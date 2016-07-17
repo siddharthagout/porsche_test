@@ -1,9 +1,8 @@
 from selenium import webdriver
 import os
-
 from config import *
 
-
+#This is log file write
 logfile = open(logs, 'w')
 
 def getTitleName():
@@ -19,7 +18,6 @@ def getTitleName():
 
 def compatibility_mode_chrome():
     """"Here we are checking compatibility of website with chrome"""
-    chromedriver = "C:\Users\Swiggy\Documents\chromedriver_win32\chromedriver"
     os.environ["webdriver.chrome.driver"] = chromedriver
     driver = webdriver.Chrome(chromedriver)
     driver.get(base_url)
