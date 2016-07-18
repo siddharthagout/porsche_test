@@ -64,9 +64,51 @@ def show_summary():
     logfile.write("\n")
     driver.close()
 
+def load_code():
+    os.environ["webdriver.chrome.driver"] = chromedriver
+    driver = webdriver.Chrome(chromedriver)
+    # driver = webdriver.Firefox()
+    driver.get(base_url)
+    driver.maximize_window()
+    driver.implicitly_wait(10)
+    driver.find_element_by_xpath("id('navigation_contact_x_ConfigurationListView')").click()
+    driver.implicitly_wait(10)
+    driver.switch_to_alert()
+    driver.find_element_by_id("SSOLoadSection_x_webcode").send_keys("PH9G4S20")
+    driver.find_element_by_link_text("Load").click()
+    driver.switch_to_window(driver.window_handles[-1])
+    assert "Porsche 911 Targa 4S" in driver.find_element_by_id("headline").text
+    print "method : {0} - PASS".format(load_code.__name__)
+    logfile.write("method : {0} - PASS".format(load_code.__name__))
+    logfile.write("\n")
+    driver.close()
+
+
+def customize_selection():
+    os.environ["webdriver.chrome.driver"] = chromedriver
+    driver = webdriver.Chrome(chromedriver)
+    # driver = webdriver.Firefox()
+    driver.get(base_url)
+    driver.maximize_window()
+    driver.implicitly_wait(10)
+    driver.find_element_by_xpath(".//*[@id='s_interieur_x_PP06']").is_selected()
+    driver.find_element_by_id("navigation_main_x_mainsuboffer_x_myPorsche").click()
+    driver.implicitly_wait(20)
+    driver.find_element_by_class_name("button_createPorscheCode").click()
+    driver.implicitly_wait(20)
+    driver.switch_to_alert()
+    print driver.find_element_by_id("createPorscheCodeDialogView_x_webcode").text
+    print "method : {0} - PASS".format(customize_selection.__name__)
+    logfile.write("method : {0} - PASS".format(customize_selection.__name__))
+    logfile.write("\n")
+    driver.close()
+
+
+
+
 
 if __name__ == '__main__':
-    # funcs = [getTitleName,compatibility_mode_chrome,ext_color_wheel_selection]
+    # funcs = [getTitleName,compatibility_mode_chrome,ext_color_wheel_selection,show_summary]
     # for func in funcs:
     #     try:
     #         func()
@@ -75,4 +117,6 @@ if __name__ == '__main__':
     #getTitleName()
     #compatibility_mode_chrome()
     #ext_color_wheel_selection()
-    show_summary()
+    #show_summary()
+    #load_code()
+    customize_selection()
