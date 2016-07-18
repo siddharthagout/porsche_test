@@ -1,2 +1,1 @@
-method : getTitleName - PASS
-method : compatibility_mode_chrome - PASS
+method : show_summary - PASS
