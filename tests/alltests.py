@@ -77,6 +77,7 @@ def load_code():
     driver.find_element_by_id("SSOLoadSection_x_webcode").send_keys("PH9G4S20")
     driver.find_element_by_link_text("Load").click()
     driver.switch_to_window(driver.window_handles[-1])
+    driver.implicitly_wait(10)
     assert "Porsche 911 Targa 4S" in driver.find_element_by_id("headline").text
     print "method : {0} - PASS".format(load_code.__name__)
     logfile.write("method : {0} - PASS".format(load_code.__name__))
@@ -108,15 +109,15 @@ def customize_selection():
 
 
 if __name__ == '__main__':
-    # funcs = [getTitleName,compatibility_mode_chrome,ext_color_wheel_selection,show_summary]
-    # for func in funcs:
-    #     try:
-    #         func()
-    #     except:
-    #         print "this method is failed : {0}".format(func)
+    funcs = [getTitleName, compatibility_mode_chrome, ext_color_wheel_selection, show_summary, load_code, customize_selection]
+    for func in funcs:
+        try:
+            func()
+        except:
+            print "this method is failed : {0}".format(func)
     #getTitleName()
     #compatibility_mode_chrome()
     #ext_color_wheel_selection()
     #show_summary()
     #load_code()
-    customize_selection()
+    #customize_selection()

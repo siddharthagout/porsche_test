@@ -1,1 +1,6 @@
+method : getTitleName - PASS
+method : compatibility_mode_chrome - PASS
+method : ext_color_wheel_selection - PASS
+method : show_summary - PASS
+method : load_code - PASS
 method : customize_selection - PASS
