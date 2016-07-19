@@ -1,0 +1,8 @@
+getTitleName                :Check that current page is loaded properly for end user in Firefox browser
+compatibility_mode_chrome   :Check that current page is loaded properly for end user in chrome browser
+get_technical_data          :Check that technical data pop-up is opening properly for end users
+get_standard_feature        :Check that standard configuration window is opened for end user if they want to open it
+show_summary                :Check that end user is able to proceed with final summary of car
+load_code                   :Check that if any end user has any configuration code generated, the same code can be loaded to page.
+customize_selection         :Check that user can customize the selection by changing seat preferences
+move_to_other_car           :Check that user can select other cars from model dropdown
