@@ -3,39 +3,28 @@ import os
 from config import *
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 
 
 #This is log file write
 logfile = open(logs, 'w')
 
 def getTitleName():
-    """"This test gets title from page"""
     driver = webdriver.Firefox()
     driver.get(base_url)
     driver.maximize_window()
     assert "Porsche Car Configurator" in driver.title
-    print "method : {0} - PASS".format(getTitleName.__name__)
-    logfile.write("method : {0} - PASS".format(getTitleName.__name__))
-    logfile.write("\n")
     driver.close()
 
 def compatibility_mode_chrome():
-    """"Here we are checking compatibility of website with chrome"""
     os.environ["webdriver.chrome.driver"] = chromedriver
     driver = webdriver.Chrome(chromedriver)
     driver.get(base_url)
     driver.maximize_window()
     assert "Porsche Car Configurator" in driver.title
-    print "method : {0} - PASS".format(compatibility_mode_chrome.__name__)
-    logfile.write("method : {0} - PASS".format(compatibility_mode_chrome.__name__))
-    logfile.write("\n")
     driver.close()
 
 def get_technical_data():
-    """"This method for executing tab wise functionality"""
     os.environ["webdriver.chrome.driver"] = chromedriver
     driver = webdriver.Chrome(chromedriver)
     driver.get(base_url)
@@ -47,9 +36,6 @@ def get_technical_data():
     driver.implicitly_wait(10)
     driver.switch_to_window(driver.window_handles[-1])
     assert "Porsche 911 Targa 4S" in driver.find_element_by_id("headline").text
-    print "method : {0} - PASS".format(get_technical_data.__name__)
-    logfile.write("method : {0} - PASS".format(get_technical_data.__name__))
-    logfile.write("\n")
     driver.close()
 
 def get_standard_feature():
@@ -65,9 +51,6 @@ def get_standard_feature():
     driver.implicitly_wait(10)
     driver.switch_to_window(driver.window_handles[-1])
     assert "Porsche 911 Targa 4S" in driver.find_element_by_id("headline").text
-    print "method : {0} - PASS".format(get_standard_feature.__name__)
-    logfile.write("method : {0} - PASS".format(get_standard_feature.__name__))
-    logfile.write("\n")
     driver.close()
 
 def show_summary():
@@ -82,9 +65,6 @@ def show_summary():
     driver.implicitly_wait(20)
     driver.switch_to_alert()
     print driver.find_element_by_id("createPorscheCodeDialogView_x_webcode").text
-    print "method : {0} - PASS".format(show_summary.__name__)
-    logfile.write("method : {0} - PASS".format(show_summary.__name__))
-    logfile.write("\n")
     driver.close()
 
 def load_code():
@@ -101,9 +81,6 @@ def load_code():
     driver.switch_to_window(driver.window_handles[-1])
     driver.implicitly_wait(10)
     assert "Porsche 911 Targa 4S" in driver.find_element_by_id("headline").text
-    print "method : {0} - PASS".format(load_code.__name__)
-    logfile.write("method : {0} - PASS".format(load_code.__name__))
-    logfile.write("\n")
     driver.close()
 
 def customize_selection():
@@ -119,9 +96,6 @@ def customize_selection():
     driver.implicitly_wait(20)
     driver.switch_to_alert()
     print driver.find_element_by_id("createPorscheCodeDialogView_x_webcode").text
-    print "method : {0} - PASS".format(customize_selection.__name__)
-    logfile.write("method : {0} - PASS".format(customize_selection.__name__))
-    logfile.write("\n")
     driver.close()
 
 def move_to_other_car():
@@ -140,9 +114,6 @@ def move_to_other_car():
     driver.switch_to_alert()
     driver.find_element_by_id("F_2034_us12_x_dialogbuttons_x_button1").click()
     driver.switch_to_window(driver.window_handles[-1])
-    print "method : {0} - PASS".format(move_to_other_car.__name__)
-    logfile.write("method : {0} - PASS".format(move_to_other_car.__name__))
-    logfile.write("\n")
     driver.close()
 
 def compare_cars():
@@ -154,22 +125,36 @@ def compare_cars():
     driver.implicitly_wait(10)
     sub1 = driver.find_element_by_id("model_expandOpportunitymodelCompare")
     ActionChains(driver).move_to_element(model).click_and_hold(model).move_to_element(sub1).click_and_hold(sub1).click().perform()
+    driver.close()
+
+def print_summary_to_end_user():
+    os.environ["webdriver.chrome.driver"] = chromedriver
+    driver = webdriver.Chrome(chromedriver)
+    driver.get(base_url)
+    driver.maximize_window()
+    driver.implicitly_wait(10)
+    driver.find_element_by_xpath(".//*[@id='navigation_main_x_mainsuboffer_x_myPorsche']").click()
+    driver.implicitly_wait(20)
+    driver.find_element_by_id("s_navigation_summary_config_x_s_navigation_summary_config_x_printButton").click()
+    driver.implicitly_wait(10)
+    driver.switch_to_alert()
+    driver.implicitly_wait(10)
+    driver.find_element_by_xpath(".//*[@id='TechnischeDaten']/span[1]").click()
+    driver.find_element_by_xpath(".//*[@id='Seriendaten']/span[1]").click()
+    driver.find_element_by_xpath(".//*[@id='print_x_dialogbuttons_x_print_button']/a").click()
+    driver.close()
 
 
 if __name__ == '__main__':
     funcs = [getTitleName, compatibility_mode_chrome, get_technical_data, get_standard_feature, show_summary, load_code,
-             customize_selection, move_to_other_car]
+             customize_selection, move_to_other_car, print_summary_to_end_user]
     for func in funcs:
         try:
             func()
+            print "Testcases : {0} - PASS".format(func)
+            logfile.write("Testcase : {0} - PASS".format(func))
+            logfile.write("\n")
         except:
-            print "this method is failed : {0}".format(func)
-    #getTitleName()
-    #compatibility_mode_chrome()
-    #get_technical_data()
-    #show_summary()
-    #load_code()
-    #customize_selection()
-    #move_to_other_car()
-    #get_standard_feature()
-    #compare_cars()
+            print "Testcases : {0} - FAILED".format(func)
+            logfile.write("Testcase : {0} - FAILED".format(func))
+            logfile.write("\n")

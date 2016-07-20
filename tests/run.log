@@ -1,0 +1,9 @@
+Testcase : <function getTitleName at 0x02D8FBB0> - PASS
+Testcase : <function compatibility_mode_chrome at 0x02D8FF70> - PASS
+Testcase : <function get_technical_data at 0x02D8FFB0> - PASS
+Testcase : <function get_standard_feature at 0x02D99030> - PASS
+Testcase : <function show_summary at 0x02D99070> - PASS
+Testcase : <function load_code at 0x02D990B0> - PASS
+Testcase : <function customize_selection at 0x02D990F0> - PASS
+Testcase : <function move_to_other_car at 0x02D99130> - FAILED
+Testcase : <function print_summary_to_end_user at 0x02D991B0> - PASS

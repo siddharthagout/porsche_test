@@ -6,3 +6,4 @@ show_summary                :Check that end user is able to proceed with final s
 load_code                   :Check that if any end user has any configuration code generated, the same code can be loaded to page.
 customize_selection         :Check that user can customize the selection by changing seat preferences
 move_to_other_car           :Check that user can select other cars from model dropdown
+print_summary_to_end_user   :Check if end user is able to print configured car
