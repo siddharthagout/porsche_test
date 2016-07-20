@@ -12,7 +12,9 @@ Instructions
 
 For every failed testcases, it will be logged in logs (run.log) and console as well.
 
-NOTE : I have written this for my windows desktop, while writing with Ubuntu it was giving browser upgrade error even my chrome and firefox browsers were latest.
+NOTE : 
+1. I have written this for my windows desktop, while writing with Ubuntu it was giving browser upgrade error even my chrome and firefox browsers were latest.
+2. I did not get time to optimze this code so that i can proper form class structure to reuse functions like broswer opening etc, well, i did it in long way. :)
 
 
 
